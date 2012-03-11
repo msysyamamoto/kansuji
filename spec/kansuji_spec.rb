@@ -45,8 +45,12 @@ describe "Kansuji" do
       0.to_kansuji(:place => true).should eq '〇'
     end
 
-    it "1京を変換できること" do
+    it "10**16を'一京'と変換できること" do
       (10**16).to_kansuji(:place => true).should eq '一京'
+    end
+
+    it "10**48を'一極'と変換できること" do
+      (10**48).to_kansuji(:place => true).should eq '一極'
     end
   end
 
