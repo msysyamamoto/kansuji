@@ -2,6 +2,8 @@
 
 class Integer
   def to_kansuji(opts = {})
+    raise "out of range" if is_out_of_range?
+
     tbl     = build_number_table(opts)
     sign    = self >= 0 ? '' : '−'
     kansuji = opts[:place] == true ?
@@ -11,6 +13,10 @@ class Integer
   end
 
   private
+
+  def is_out_of_range?
+    (10**72) <= self.abs
+  end
 
   def build_number_table(opts)
     base_tbl = {

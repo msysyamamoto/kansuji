@@ -52,6 +52,18 @@ describe "Kansuji" do
     it "10**48を'一極'と変換できること" do
       (10**48).to_kansuji(:place => true).should eq '一極'
     end
+
+    it "10**68を'一無量大数'と変換できること" do
+      (10**68).to_kansuji(:place => true).should eq '一無量大数'
+    end
+
+    it "10**72 は範囲外なのでエラーになること" do
+      proc { (10**72).to_kansuji }.should raise_error(RuntimeError, "out of range")
+    end
+
+    it "10**72 - 1 は範囲内なのでエラーにならないこと" do
+      (10**72 - 1).to_kansuji(:place => true).should eq '九千九百九十九無量大数九千九百九十九不可思議九千九百九十九那由他九千九百九十九阿僧祇九千九百九十九恒河沙九千九百九十九極九千九百九十九載九千九百九十九正九千九百九十九澗九千九百九十九溝九千九百九十九穣九千九百九十九𥝱九千九百九十九垓九千九百九十九京九千九百九十九兆九千九百九十九億九千九百九十九万九千九百九十九'
+    end
   end
 
   describe 'OpenOfficeの結果と同じになっているか？' do
