@@ -97,7 +97,9 @@ class Integer
       unit = unit.zip(subplace_tbls[unit.length]).delete_if do |pair|
         /\A[〇零]\z/ =~ pair[0]
       end
-      unit << place_tbl.shift
+
+      place = place_tbl.shift
+      unit.length > 0 ? (unit << place) : unit 
     end.reverse.join.gsub(/[壱一]([百十拾])/, '\1')
   end
 end

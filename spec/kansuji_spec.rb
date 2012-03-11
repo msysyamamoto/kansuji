@@ -44,6 +44,10 @@ describe "Kansuji" do
     it ":place => :true を指定した場合, 0 は '〇' に変換される" do
       0.to_kansuji(:place => true).should eq '〇'
     end
+
+    it "1京を変換できること" do
+      (10**16).to_kansuji(:place => true).should eq '一京'
+    end
   end
 
   describe 'OpenOfficeの結果と同じになっているか？' do
